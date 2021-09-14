@@ -1,0 +1,64 @@
+<div class="root">
+    <div class="navbar has-background-dark">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <h1 class="app-name has-gradient-text">Kanban</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="board">
+        <div class="board-bar">
+            <div class="board-name">Board Name</div>
+        </div>
+
+        <div class="board-wrapper">
+            <div class="board-columns">
+                <div class="board-column">
+                    <div class="column-title">Ideas</div>
+                    <div class="tasks-container">
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="board-columns">
+                <div class="board-column"
+                    cdkDropList
+                    #todoList="cdkDropList"
+                    [cdkDropListData]="todo"
+                    [cdkDropListConnectedTo]="[doneList]"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="column-title">Research</div>
+                    <div class="task" *ngFor="let item of todo" cdkDrag>
+                        {{ item }}
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="board-columns">
+                <div class="board-column"
+                    cdkDropList
+                    #doneList="cdkDropList"
+                    [cdkDropListData]="done"
+                    [cdkDropListConnectedTo]="[todoList]"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="column-title" >Todo</div>
+                    <div class="task" *ngFor="let item of done" cdkDrag>
+                        {{ item }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="board-columns">
+                <div class="board-column">
+                    <div class="column-title">Done</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
